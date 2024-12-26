@@ -14,3 +14,20 @@ export const ShortUrlSchema = z.object({
     // VIRTUALS
     user: UserSchema.optional()
 }).extend(TimeStampSchema.shape)
+
+export const CreateShortUrlSchema = ShortUrlSchema.pick({ 
+    userId: true,
+    longUrl: true,
+    customAlias: true,
+    topic: true
+}).required({
+    userId: true,
+    longUrl: true
+})
+
+export const GetShortUrlByCustomAliasSchema = ShortUrlSchema.pick({ 
+    customAlias: true,
+}).required({
+    customAlias: true
+})
+
