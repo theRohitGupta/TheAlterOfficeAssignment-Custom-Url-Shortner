@@ -31,7 +31,7 @@ const router = Router();
  *                 type: string
  *                 description: The original long URL to be shortened
  *                 example: "https://example.com/some-long-url"
- *               customAlias:
+ *               alias:
  *                 type: string
  *                 description: Custom alias for the short URL (optional)
  *                 example: "my-custom-alias"
@@ -63,14 +63,14 @@ router.post('/',  RateLimiterMiddleware, authCheck, createShortUrl);
 
 /**
  * @swagger
- * /api/shorten/{customAlias}:
+ * /api/shorten/{alias}:
  *   get:
  *     summary: Retrieve the original URL by custom alias
  *     description: Redirects the user to the original long URL corresponding to the provided custom alias.
  *     tags: [ShortUrl]
  *     parameters:
  *       - in: path
- *         name: customAlias
+ *         name: alias
  *         required: true
  *         description: Custom alias of the short URL
  *         schema:
@@ -88,6 +88,6 @@ router.post('/',  RateLimiterMiddleware, authCheck, createShortUrl);
  *       404:
  *         description: Custom alias not found
  */
-router.get('/:customAlias', getShortUrlByCustomAlias);
+router.get('/:alias', getShortUrlByCustomAlias);
 
 export default router;

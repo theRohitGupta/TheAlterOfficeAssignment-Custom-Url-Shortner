@@ -7,6 +7,7 @@ import { errorHandler } from './middleware/error-handler';
 import { notFoundHandler } from './middleware/not-found-handler';
 import apiRoutes from './routes/index';
 import './services/passport';
+import connectDB from './config/database';
 
 const app = express();
 
@@ -30,11 +31,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-/*
- * Global error handler to manage application errors
- */
-app.use(errorHandler)
-
 // Routes
 app.use(apiRoutes);
 
@@ -55,12 +51,14 @@ app.get("/", (req: Request, res: Response) => {
 app.use(notFoundHandler);
 
 // Connect to MongoDB
-mongoose
-  .connect(MONGO_DB_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('Error connecting to MongoDB:', err));
+(async() => connectDB())()
 
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+/*
+ * Global error handler to manage application errors
+ */
+app.use(errorHandler)

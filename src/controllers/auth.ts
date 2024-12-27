@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { successHandler } from "../middleware/success-handler";
+import { TRequestUser } from "../types/req-user";
 
 /**
  * Handles Google OAuth login
@@ -21,9 +22,14 @@ export const googleAuthCallback = (req: Request, res: Response) => {
  * @param res Express response object
  */
 export const getCurrentUser = (req: Request, res: Response) => {
+  const user =  req.user as TRequestUser
   successHandler(res, {
     status: 200,
-    data: req.user,
+    data: {
+      _id: user._id,
+      email: user.email,
+      name: user.name
+    },
   });
 };
 

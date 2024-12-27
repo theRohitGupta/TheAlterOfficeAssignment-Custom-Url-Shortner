@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import rateLimit from "express-rate-limit";
+import { RATE_LIMIT, RATE_LIMIT_TIME, TRUSTED_RATE_LIMITLESS_IPS } from "../constants/variables/constants";
 
 interface RateLimitRequest extends Request {
   rateLimit?: {
@@ -63,5 +64,5 @@ const createRateLimiter = (windowMs = 15 * 60 * 1000, limit = 100, trustedIPs: s
   });
 };
 
-const RateLimiterMiddleware = createRateLimiter(10 * 60 * 1000, 5, ["127.0.0.1", "::1"]); // 10 mins, 5 requests
+const RateLimiterMiddleware = createRateLimiter(RATE_LIMIT_TIME, RATE_LIMIT, TRUSTED_RATE_LIMITLESS_IPS); 
 export default RateLimiterMiddleware;

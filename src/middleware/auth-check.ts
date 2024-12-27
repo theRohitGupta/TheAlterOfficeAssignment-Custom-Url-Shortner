@@ -8,7 +8,7 @@ export const authCheck = async (
 ) => {
   try {
     if (!req.isAuthenticated()) {
-      res.status(401).json({
+      return res.status(401).json({
         success: false,
         message: `Please Login to Access Api's, You are not authenticated`,
         links: {
@@ -17,7 +17,7 @@ export const authCheck = async (
         },
       });
     }
-    return next();
+    next()
   } catch (error) {
     return next(error);
   }

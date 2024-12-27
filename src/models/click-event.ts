@@ -1,8 +1,9 @@
 import { model, Schema, Types } from 'mongoose';
 import { ModelsEnum } from '../constants/enums/models';
+import { Document } from 'mongoose';
 
-export interface IClickEventDocument {
-  _id: string;
+export interface IClickEventDocument extends Document {
+  _id: Types.ObjectId | string;
   shortUrlId: Types.ObjectId | string;
   userId?: Types.ObjectId | string;
   timestamp: Date;

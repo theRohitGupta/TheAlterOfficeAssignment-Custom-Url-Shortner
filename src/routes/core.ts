@@ -1,11 +1,11 @@
 import Router from 'express';
+import analyticsRoutes from './analytics';
 import shortUrlRoutes from './short-url';
-import { authCheck } from '../middleware/auth-check';
 
 const router = Router();
 
 router.use('/shorten', shortUrlRoutes);
 
-router.use('/analytics', authCheck, shortUrlRoutes);
+router.use('/analytics', analyticsRoutes);
 
 export default router

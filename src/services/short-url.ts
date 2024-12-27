@@ -29,7 +29,7 @@ import { AppError } from "../utils/app-error";
      * Ensures the alias does not already exist in the database.
      * @returns A randomly generated unique alias string.
      */
-    private async customAliasGenerator(): Promise<string> {
+    async randomAliasGenerator(): Promise<string> {
       const numberDictionary = NumberDictionary.generate({ min: 100, max: 999 });
   
       while (true) {
@@ -49,7 +49,7 @@ import { AppError } from "../utils/app-error";
           style: "capital",
         });
   
-        const existingAlias = await this.model.findOne({ customAlias: randomAlias });
+        const existingAlias = await this.model.findOne({ alias: randomAlias });
         if (!existingAlias) {
           return randomAlias;
         }
@@ -65,20 +65,20 @@ import { AppError } from "../utils/app-error";
       request: TCreateShortUrlRequest
     ): Promise<IShortUrlDocument> {
       // Check if the provided alias already exists
-      if (request.customAlias) {
-        const existingAlias = await this.model.findOne({ customAlias: request.customAlias });
+      if (request.alias) {
+        const existingAlias = await this.model.findOne({ alias: request.alias });
         if (existingAlias) {
           throw new AppError("Alias already exists. Please try again", 409);
         }
       }
   
       // Use provided alias or generate a unique random one
-      const alias = request.customAlias || (await this.customAliasGenerator());
+      const alias = request.alias || (await this.randomAliasGenerator());
 
       const query: TCreateShortUrlRequest = {
         userId: request.userId,
         longUrl: request.longUrl,
-        customAlias: alias
+        alias: alias
       }
 
       query.topic = request.topic;
@@ -86,7 +86,7 @@ import { AppError } from "../utils/app-error";
       // Create and save the short URL
       const shortUrlDoc = await this.model.create({
         ...query,
-        isCustom: !!request.customAlias
+        isCustom: !!request.alias
       })
   
       return shortUrlDoc;

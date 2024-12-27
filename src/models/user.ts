@@ -1,13 +1,15 @@
 // src/models/User.ts
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema, Types } from 'mongoose';
 import { ModelsEnum } from '../constants/enums/models';
 
 export interface IUserDocument extends Document {
+  _id: Types.ObjectId | string;
   googleId: string;
   email: string;
   name: string;
+  accessToken: string;
   createdAt: Date;
-  accessToken: string
+  updatedAt: Date;
 }
 
 const UserSchema = new Schema<IUserDocument>({
@@ -15,7 +17,7 @@ const UserSchema = new Schema<IUserDocument>({
   email: { type: String, required: true, unique: true },
   name: { type: String },
   accessToken: { type: String }
-}, { timestamps: true });
+}, { timestamps: true});
 
 const UserModel = mongoose.model<IUserDocument>(ModelsEnum.USER, UserSchema);
 export default UserModel;

@@ -23,7 +23,11 @@ const router = express.Router();
  *   get:
  *     tags: [Authentication]
  *     summary: Initiates Google OAuth login
- *     description: Redirects the user to Google's OAuth 2.0 server for authentication.
+ *     description: >
+ *       Redirects the user to Google's OAuth 2.0 server for authentication. This API initiates the login process
+ *       by redirecting the user to Google. After successful authentication, Google will redirect the user back
+ *       to the callback URL specified in the application.
+ *       **Note**: This is a redirection API.
  *     responses:
  *       302:
  *         description: Redirect to Google OAuth server.
@@ -34,19 +38,7 @@ router.get(
   googleAuth
 );
 
-/**
- * @swagger
- * /auth/google/callback:
- *   get:
- *     tags: [Authentication]
- *     summary: Handles Google OAuth callback
- *     description: Handles the callback from Google after authentication.
- *     responses:
- *       302:
- *         description: Redirect to the home page upon successful authentication.
- *       401:
- *         description: Authentication failed. Redirect to the login page.
- */
+
 router.get(
   '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
@@ -59,7 +51,10 @@ router.get(
  *   get:
  *     tags: [Authentication]
  *     summary: Get current logged-in user
- *     description: Returns information about the currently logged-in user.
+ *     description: >
+ *       Returns information about the currently logged-in user. This API requires the user to be authenticated
+ *       and provides details such as the user ID and email address.
+ *       **Note**: This API is authenticated.
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -87,7 +82,10 @@ router.get('/current_user', authCheck, getCurrentUser);
  *   get:
  *     tags: [Authentication]
  *     summary: Logs out the current user
- *     description: Logs out the user and redirects them to the home page.
+ *     description: >
+ *       Logs out the user and redirects them to the home page. This API terminates the user session and ensures
+ *       they are logged out from the application.
+ *       **Note**: This API is authenticated and is a redirection API.
  *     responses:
  *       302:
  *         description: Redirect to the home page after logout.

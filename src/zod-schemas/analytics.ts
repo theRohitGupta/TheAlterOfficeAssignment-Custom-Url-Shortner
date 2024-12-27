@@ -1,13 +1,10 @@
-import { ShortUrlSchema } from "./short-url"
+import { z } from "zod"
+import { ShortUrlTopicEnum } from "../constants/enums/topic"
 
-export const GetCustomAliasAnalyticsRequestSchema = ShortUrlSchema.pick({
-    customAlias: true
-}).required({
-    customAlias: true
+export const GetAliasAnalyticsRequestSchema = z.object({
+    alias: z.string()
 })
 
-export const GetTopicBasedAnalyticsRequestSchema = ShortUrlSchema.pick({
-    topic: true
-}).required({
-    topic: true
+export const GetTopicBasedAnalyticsRequestSchema = z.object({
+    topic: z.nativeEnum(ShortUrlTopicEnum)
 })

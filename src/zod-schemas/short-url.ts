@@ -7,7 +7,7 @@ export const ShortUrlSchema = z.object({
     _id: MongooseObjectIdSchema,
     userId: MongooseObjectIdSchema,
     longUrl: z.string(),
-    customAlias: z.string().optional(),
+    alias: z.string().optional(),
     isCustom: z.boolean().optional(),
     topic: z.nativeEnum(ShortUrlTopicEnum).optional(),
 
@@ -18,7 +18,7 @@ export const ShortUrlSchema = z.object({
 export const CreateShortUrlSchema = ShortUrlSchema.pick({ 
     userId: true,
     longUrl: true,
-    customAlias: true,
+    alias: true,
     topic: true
 }).required({
     userId: true,
@@ -26,8 +26,8 @@ export const CreateShortUrlSchema = ShortUrlSchema.pick({
 })
 
 export const GetShortUrlByCustomAliasSchema = ShortUrlSchema.pick({ 
-    customAlias: true,
+    alias: true,
 }).required({
-    customAlias: true
+    alias: true
 })
 

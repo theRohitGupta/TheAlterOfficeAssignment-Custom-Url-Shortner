@@ -1,13 +1,13 @@
-import { model, Schema, Types } from "mongoose";
+import { Document, model, Schema, Types } from "mongoose";
 import { ModelsEnum } from "../constants/enums/models";
 import { ShortUrlTopicEnum } from "../constants/enums/topic";
 import { IUserDocument } from "./user";
 
-export interface IShortUrlDocument {
-    _id: string;
+export interface IShortUrlDocument extends Document {
+    _id: Types.ObjectId | string;
     userId: Types.ObjectId | string;
     longUrl: string;
-    customAlias: string;
+    alias: string;
     isCustom: boolean;
     topic?: ShortUrlTopicEnum;
     createdAt: Date;
@@ -21,7 +21,7 @@ const ShortUrlSchema = new Schema<IShortUrlDocument>(
     {
         userId: { type: Schema.Types.ObjectId, ref: ModelsEnum.USER, required: true },
         longUrl: { type: String, required: true },
-        customAlias: { type: String, required: true, unique: true },
+        alias: { type: String, required: true, unique: true },
         isCustom: { type: Boolean, required: true },
         topic: {
             type: String,
@@ -36,7 +36,7 @@ const ShortUrlSchema = new Schema<IShortUrlDocument>(
 );
 
 // Indexes
-ShortUrlSchema.index({ customAlias: 1 });
+ShortUrlSchema.index({ alias: 1 });
 
 // Virtual fields
 ShortUrlSchema.virtual('user', {

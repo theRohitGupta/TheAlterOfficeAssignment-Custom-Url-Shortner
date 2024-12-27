@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { GetCustomAliasAnalyticsRequestSchema, GetTopicBasedAnalyticsRequestSchema } from "../zod-schemas/analytics";
-import { OsTypeEnum } from "../constants/enums/os-type";
 import { DeviceTypeEnum } from "../constants/enums/device-type";
+import { OsTypeEnum } from "../constants/enums/os-type";
+import { GetAliasAnalyticsRequestSchema, GetTopicBasedAnalyticsRequestSchema } from "../zod-schemas/analytics";
 
-export type TGetCustomAliasAnalyticsRequest = z.infer<typeof GetCustomAliasAnalyticsRequestSchema>
+export type TGetCustomAliasAnalyticsRequest = z.infer<typeof GetAliasAnalyticsRequestSchema>
 
 export type TGetTopicBasedAnalyticsRequest = z.infer<typeof GetTopicBasedAnalyticsRequestSchema>
 
@@ -13,13 +13,13 @@ export type TClicksByDate = {
 }
 
 export type TOsType = {
-    osName: OsTypeEnum,
+    osName: OsTypeEnum | string,
     uniqueClicks: number,
     uniqueUsers: number
 }
 
 export type TDeviceType = {
-    deviceName: DeviceTypeEnum,
+    deviceName: DeviceTypeEnum | string,
     uniqueClicks: number,
     uniqueUsers: number
 }

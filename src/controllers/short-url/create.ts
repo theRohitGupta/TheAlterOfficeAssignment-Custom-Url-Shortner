@@ -20,7 +20,7 @@ export const createShortUrl = async (req: Request, res: Response, next: NextFunc
         return successHandler(res, {
             status: 201,
             data: {
-                shortUrl: `http://localhost:${PORT}/api/shorten/${createdDoc.customAlias}`,
+                shortUrl: `http://localhost:${PORT}/api/shorten/${createdDoc.alias}`,
                 createdAt: createdDoc.createdAt
             }
         })
