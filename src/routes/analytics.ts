@@ -2,7 +2,6 @@ import Router from 'express';
 import { getOverallAnalytics } from '../controllers/analytics/overall';
 import { getTopicAnalytics } from '../controllers/analytics/topic-based';
 import { getUrlAnalytics } from '../controllers/analytics/url-alias';
-import { authCheck } from '../middleware/auth-check';
 
 const router = Router();
 
@@ -91,7 +90,7 @@ const router = Router();
  *       500:
  *         description: Internal server error.
  */
-router.get('/overall', authCheck, getOverallAnalytics)
+router.get('/overall', getOverallAnalytics)
 
 /**
  * @swagger
@@ -161,7 +160,7 @@ router.get('/overall', authCheck, getOverallAnalytics)
  *       500:
  *         description: Internal server error.
  */
-router.get('/topic/:topic', authCheck, getTopicAnalytics)
+router.get('/topic/:topic', getTopicAnalytics)
 
 /**
  * @swagger
@@ -239,7 +238,7 @@ router.get('/topic/:topic', authCheck, getTopicAnalytics)
  *       500:
  *         description: Internal server error.
  */
-router.get('/:alias', authCheck, getUrlAnalytics);
+router.get('/:alias', getUrlAnalytics);
 
 
 export default router;
