@@ -21,7 +21,7 @@ export const getTopicAnalytics = async (
       req.params
     );
     const user = req.user as TRequestUser;
-    const cacheKey = `${validationData.topic}-${user._id}`;
+    const cacheKey = `${validationData.topic}-${user._id.toString()}`;
 
     // REDIS CACHED DATA
     let topicAnalytics = await RedisClient.get<TGetAnalyticsResponse>(cacheKey);

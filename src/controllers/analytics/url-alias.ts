@@ -22,7 +22,7 @@ export const getUrlAnalytics = async (
     );
 
     const user = req.user as TRequestUser;
-    const cacheKey = `${validationData.alias}-${user._id}`;
+    const cacheKey = `${validationData.alias}-${user._id.toString()}`;
 
     // REDIS CACHED DATA
     let urlAnalyticsForThisAlias = await RedisClient.get<TGetAnalyticsResponse>(cacheKey);

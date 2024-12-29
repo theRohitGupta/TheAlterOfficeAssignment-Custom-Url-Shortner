@@ -40,7 +40,7 @@ class ClickEventService {
       throw new AppError("Alias not found", 404);
     }
 
-    if(shortUrlDocument.userId.toString() !== user._id){
+    if(shortUrlDocument.userId.toString() !== user._id.toString()){
       throw new AppError("You are not the Owner of this Alias", 401)
     }
 

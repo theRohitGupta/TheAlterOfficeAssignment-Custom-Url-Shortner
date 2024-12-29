@@ -12,7 +12,7 @@ export const getOverallAnalytics = async (
 ) => {
   try {
     const user = req.user as TRequestUser
-    const cacheKey = `overall-${user._id}`
+    const cacheKey = `overall-${user._id.toString()}`
 
     // REDIS CACHED DATA
     let overallAnalytics = await RedisClient.get<TGetAnalyticsResponse>(cacheKey);

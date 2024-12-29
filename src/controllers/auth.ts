@@ -26,7 +26,7 @@ export const getCurrentUser = (req: Request, res: Response) => {
   successHandler(res, {
     status: 200,
     data: {
-      _id: user._id,
+      _id: user._id.toString(),
       email: user.email,
       name: user.name
     },
