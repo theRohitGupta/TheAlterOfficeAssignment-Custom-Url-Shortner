@@ -9,10 +9,11 @@ export const MONGO_DB_URI = process.env.MONGO_URI || "";
 export const COOKIE_KEY = process.env.COOKIE_KEY || "";
 export const REDIS_HOST = process.env.REDIS_HOST || "";
 export const REDIS_PORT = process.env.REDIS_PORT || "";
+export const HOSTED_IP = process.env.HOSTED_IP || "http://localhost:";
 export default NODE_ENV
 
 // Check if any required environment variables are missing
-if (!NODE_ENV || !PORT || !GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !MONGO_DB_URI || !COOKIE_KEY) {
+if (!NODE_ENV || !PORT || !GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !MONGO_DB_URI || !COOKIE_KEY || !HOSTED_IP || !REDIS_HOST || !REDIS_PORT ) {
   console.error("Missing required environment variables. Exiting...");
   process.exit(1); // Exit the server with an error code
 }

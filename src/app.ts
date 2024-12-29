@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import passport from 'passport';
 import connectDB from './config/database';
 import { cleanupRedisStore, configureRedisStore } from './config/redis-store';
-import { PORT } from './constants/variables/env-constants';
+import { HOSTED_IP, PORT } from './constants/variables/env-constants';
 import { errorHandler } from './middleware/error-handler';
 import { notFoundHandler } from './middleware/not-found-handler';
 import apiRoutes from './routes/index';
@@ -38,10 +38,10 @@ async function initializeApp() {
           ? `Welcome to The Alter Office Assignment Server!`
           : `Welcome to The Alter Office Assignment Server! \n You must log in to access the API's`,
         links: {
-          swaggerDocs: `http://localhost:${PORT}/api-docs`,
+          swaggerDocs: `${HOSTED_IP}${PORT}/api-docs`,
           ...(isAuthenticated
-            ? { logout: `http://localhost:${PORT}/logout` }
-            : { login: `http://localhost:${PORT}/login/google` }),
+            ? { logout: `${HOSTED_IP}${PORT}/logout` }
+            : { login: `${HOSTED_IP}${PORT}/login/google` }),
         },
         ...(isAuthenticated && user
           ? { user: { email: user.email, name: user.name } }
@@ -79,7 +79,7 @@ async function startServer() {
     
     // Start server
     app.listen(PORT, '0.0.0.0', () => {
-      console.log(`Server running on http://localhost:${PORT}`);
+      console.log(`Server running on ${HOSTED_IP}${PORT}`);
     });
 
   } catch (error) {

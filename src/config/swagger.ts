@@ -1,6 +1,6 @@
 import swaggerJsDoc, { Options } from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-import { PORT } from "../constants/variables/env-constants";
+import { HOSTED_IP, PORT } from "../constants/variables/env-constants";
 
 const swaggerOptions: Options = {
   definition: {
@@ -19,15 +19,15 @@ The Custom URL Shortener API simplifies sharing long URLs by creating short, eas
 
 ### Disclaimer
 ⚠️ **Note**: **Redirect APIs** may not work via Swagger UI. Instead, copy and paste the URLs directly into your browser for them to work as expected.
--      ### **Login** - http://localhost:${PORT}/login/google
--      ### **Alias** - http://localhost:${PORT}/api/shorten/{alias}
+-      ### **Login** - ${HOSTED_IP}${PORT}/login/google
+-      ### **Alias** - ${HOSTED_IP}${PORT}/api/shorten/{alias}
 
--      ### **Logout** - http://localhost:${PORT}/logout
+-      ### **Logout** - ${HOSTED_IP}${PORT}/logout
       `,
     },
     servers: [
       {
-        url: `http://localhost:${PORT}`,
+        url: `${HOSTED_IP}${PORT}`,
         description: "Local server for development",
       },
     ],
