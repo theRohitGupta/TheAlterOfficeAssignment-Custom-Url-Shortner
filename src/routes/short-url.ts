@@ -38,7 +38,7 @@ const router = Router();
  *               topic:
  *                 type: string
  *                 description: Topic category for the short URL (optional)
- *                 example: "marketing"
+ *                 example: "activation"
  *     responses:
  *       201:
  *         description: Successfully created short URL

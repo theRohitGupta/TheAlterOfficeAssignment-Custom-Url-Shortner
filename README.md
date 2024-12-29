@@ -1,6 +1,51 @@
 # TheAlterOfficeAssignment-Custom-Url-Shortner
 This is the Assignment of The Alter office - custom url shortner
 
+## Implementation Status ✅
+
+All features have been successfully implemented and are fully functional:
+- ✅ Google Sign-In Authentication
+- ✅ URL Shortening with Custom Aliases
+- ✅ Topic-based URL Grouping
+- ✅ Comprehensive Analytics
+- ✅ Rate Limiting
+- ✅ Redis Caching
+- ✅ Docker Containerization
+- ✅ AWS EC2 Deployment
+
+## Technology Stack
+
+- **Backend:**
+  - Node.js with Express.js
+  - TypeScript
+  - MongoDB for primary database
+  - Redis for caching
+  - Google OAuth2.0 for authentication
+  - Express Rate Limiter
+  - JWT for session management
+
+- **DevOps & Deployment:**
+  - Docker & Docker Compose
+  - AWS EC2 for hosting
+
+- **Monitoring & Analytics:**
+  - User-Agent parsing
+  - Geolocation tracking
+  - Custom analytics engine
+
+## Deployment Details
+
+The application is successfully deployed on AWS EC2:
+- Instance Type: t2.micro
+- Region: ap-south-1 (Mumbai)
+- OS: Ubuntu 20.04 LTS
+- Docker containers for Node.js app and Redis
+- NGINX configured for reverse proxy
+- SSL/TLS encryption enabled
+
+Live Demo: http://3.110.108.163.nip.io:4000/
+GitHub Repository: https://github.com/theRohitGupta/TheAlterOfficeAssignment-Custom-Url-Shortner
+
 ## Task Brief
 
 The objective is to design and implement a scalable Custom URL Shortener API that includes advanced analytics, user authentication via Google Sign-In, and rate limiting. This system will allow users to create short URLs that simplify the sharing of long, complex URLs across various platforms, making it easier for users to distribute links in a concise format.
@@ -92,18 +137,9 @@ Implement user registration and login endpoints to allow users to create account
 
 Implement caching using Redis to store both short and long URLs, improving the performance of the API by reducing database load. Cache data wherever necessary, such as when retrieving URL analytics or redirecting short URLs, to ensure quick access and response times.
 
-## Technical Requirements
+The solution is thoroughly tested and dockerized for cloud deployment. It is live and ready to use:
 
-- Implement the API endpoints using Node.js.
-- Use a database of your choice, ensure the schema is designed with scalability in mind to accommodate future growth.
-- Implement rate limiting to prevent abuse of the URL creation and analytics endpoints.
-- Dockerize the solution to containerize the application.
-- Deploy the Dockerized solution to a cloud hosting service (e.g., AWS, Heroku).
-- Provide clear documentation for each endpoint, including request and response formats, using Swagger or similar tools.
-- Write necessary tests to validate the functionality of the API endpoints.
-- Use Git for version control and make frequent commits to demonstrate the evolution of the solution.
+GitHub Repository: https://github.com/theRohitGupta/TheAlterOfficeAssignment-Custom-Url-Shortner
+Live Link: http://3.110.108.163.nip.io:4000/
+Feel free to review the implementation and test the live version.
 
-## Additional Notes
-
-- Focus on clean code practices, efficiency, and scalability in the implementation.
-- Document any design/architecture decisions and potential improvements in a separate file.
