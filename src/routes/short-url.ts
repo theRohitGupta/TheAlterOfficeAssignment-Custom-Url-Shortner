@@ -67,6 +67,7 @@ router.post('/',  RateLimiterMiddleware, authCheck, createShortUrl);
  *   get:
  *     summary: Retrieve the original URL by custom alias
  *     description: Redirects the user to the original long URL corresponding to the provided custom alias.
+ *       **Note**: This is a redirection API. Please paste this link directly into the browser, as Swagger does not support direct redirection.
  *     tags: [ShortUrl]
  *     parameters:
  *       - in: path
