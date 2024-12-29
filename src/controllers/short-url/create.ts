@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { PORT } from "../../constants/variables/env-constants";
+import { HOSTED_IP, PORT } from "../../constants/variables/env-constants";
 import { successHandler } from "../../middleware/success-handler";
 import { shortUrlService } from "../../services/short-url";
 import { TCreateShortUrlRequest } from "../../types/short-url";
@@ -20,7 +20,7 @@ export const createShortUrl = async (req: Request, res: Response, next: NextFunc
         return successHandler(res, {
             status: 201,
             data: {
-                shortUrl: `http://localhost:${PORT}/api/shorten/${createdDoc.alias}`,
+                shortUrl: `${HOSTED_IP}${PORT}/api/shorten/${createdDoc.alias}`,
                 createdAt: createdDoc.createdAt
             }
         })

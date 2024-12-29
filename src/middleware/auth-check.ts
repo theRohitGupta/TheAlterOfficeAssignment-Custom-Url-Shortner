@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { PORT } from "../constants/variables/env-constants";
+import { HOSTED_IP, PORT } from "../constants/variables/env-constants";
 
 export const authCheck = async (
   req: Request,
@@ -12,8 +12,8 @@ export const authCheck = async (
         success: false,
         message: `Please Login to Access Api's, You are not authenticated`,
         links: {
-          swaggerDocs: `http://localhost:${PORT}/api-docs`,
-          login: `http://localhost:${PORT}/login/google`,
+          swaggerDocs: `${HOSTED_IP}${PORT}/api-docs`,
+          login: `${HOSTED_IP}${PORT}/login/google`,
         },
       });
     }
