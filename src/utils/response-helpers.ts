@@ -1,5 +1,3 @@
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export const errorResponse = (error: any = {}, message: string) => {
     return {
       success: false,

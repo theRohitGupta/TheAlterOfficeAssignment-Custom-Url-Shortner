@@ -1,4 +1,3 @@
-// src/models/User.ts
 import mongoose, { Document, Schema, Types } from 'mongoose';
 import { ModelsEnum } from '../constants/enums/models';
 

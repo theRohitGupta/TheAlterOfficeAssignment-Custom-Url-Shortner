@@ -10,7 +10,6 @@ import { errorResponse } from "../utils/response-helpers";
  * @param next - The next middleware function in the stack
  */
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const errorHandler = (
   err: unknown,
   req: Request,
@@ -28,11 +27,9 @@ export const errorHandler = (
   if (err instanceof AppError) {
     error.status = err.statusCode || 500;
     error.message = err.message;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     error.error = err.originalError as any;
   }
 
-  // Respond with a clean, structured error
   return res.status(error.status).json(
     errorResponse(
       error.error, // Error details (can be null)

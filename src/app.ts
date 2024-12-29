@@ -1,4 +1,3 @@
-// src/app.ts
 import express, { Request, Response } from 'express';
 import passport from 'passport';
 import connectDB from './config/database';
