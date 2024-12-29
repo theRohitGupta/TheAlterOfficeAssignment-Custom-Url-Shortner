@@ -27,7 +27,7 @@ const router = express.Router();
  *       Redirects the user to Google's OAuth 2.0 server for authentication. This API initiates the login process
  *       by redirecting the user to Google. After successful authentication, Google will redirect the user back
  *       to the callback URL specified in the application.
- *       **Note**: This is a redirection API.
+ *       **Note**: This is a redirection API. Please paste this link directly into the browser, as Swagger does not support direct redirection.
  *     responses:
  *       302:
  *         description: Redirect to Google OAuth server.
@@ -85,7 +85,7 @@ router.get('/current_user', authCheck, getCurrentUser);
  *     description: >
  *       Logs out the user and redirects them to the home page. This API terminates the user session and ensures
  *       they are logged out from the application.
- *       **Note**: This API is authenticated and is a redirection API.
+ *       **Note**: This API is authenticated and is a redirection API.Please paste this link directly into the browser, as Swagger does not support direct redirection.
  *     responses:
  *       302:
  *         description: Redirect to the home page after logout.
