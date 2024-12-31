@@ -137,6 +137,12 @@ Implement user registration and login endpoints to allow users to create account
 
 Implement caching using Redis to store both short and long URLs, improving the performance of the API by reducing database load. Cache data wherever necessary, such as when retrieving URL analytics or redirecting short URLs, to ensure quick access and response times.
 
+### 8. How to run
+1. Fork/ Download the code run "npm install"
+2. Then Fill all .env.reference required variables and rename that to .env
+3. Then run "docker-compose up --build" (use -d also for detached mode)
+4. According to your HOSTED_IP and PORT variable, you can access it, for default it is set to localhost.
+
 The solution is thoroughly tested and dockerized for cloud deployment. It is live and ready to use:
 
 GitHub Repository: https://github.com/theRohitGupta/TheAlterOfficeAssignment-Custom-Url-Shortner
